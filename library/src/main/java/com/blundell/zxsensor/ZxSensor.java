@@ -2,7 +2,7 @@ package com.blundell.zxsensor;
 
 import android.util.Log;
 
-import com.google.android.things.pio.PeripheralManagerService;
+import com.google.android.things.pio.PeripheralManager;
 import com.google.android.things.pio.UartDevice;
 import com.google.android.things.pio.UartDeviceCallback;
 
@@ -22,7 +22,7 @@ public class ZxSensor {
     public static ZxSensor newInstance(String uartPinAddress) {
         UartDevice bus;
         try {
-            PeripheralManagerService service = new PeripheralManagerService();
+            PeripheralManager service = PeripheralManager.getInstance();
             bus = service.openUartDevice(uartPinAddress);
         } catch (IOException e) {
             throw new IllegalStateException(uartPinAddress + " cannot be connected to.", e);
